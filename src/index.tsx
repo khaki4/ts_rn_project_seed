@@ -1,12 +1,19 @@
-import React from "react";
-import { Provider } from "react-redux";
-import store from "./store/index";
-import { StackNavigator } from 'react-navigation';
-import AppWithNavigationState from './navigator/AppNavigator';
+import React from 'react';
+import {
+	createStackNavigator,
+} from 'react-navigation';
+import { Provider, connect } from 'react-redux';
 
-export default () => (
-	<Provider store={store}>
-		<AppWithNavigationState />
-	</Provider>
-);
+// import 순서 변경 금지!
+import { store } from './redux/configureStore'
+import AppWithNavigationState from './component/App'
 
+export default class Root extends React.Component {
+	render() {
+		return (
+			<Provider store={store}>
+				<AppWithNavigationState />
+			</Provider>
+		);
+	}
+}
